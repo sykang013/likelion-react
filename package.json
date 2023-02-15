@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node backend/server.js --open",
     "dev": "nodemon backend/server.js",
-    "compile": "babel frontend/src -d frontend/public/scripts"
+    "compile": "babel frontend/src -d frontend/public/scripts",
+    "watch": "npm run compile -- --watch"
   },
   "devDependencies": {
     "@babel/cli": "7.20.7",
