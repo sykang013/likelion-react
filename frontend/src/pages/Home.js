@@ -1,22 +1,35 @@
-import { likeLionMembers } from '../data/likeLionMembers.js';
-
-console.log(likeLionMembers);
-
 class Home extends React.Component {
+
   state = {
-    members: []
+    members: this.props.likeLionMembers ?? []
   };
+
+  handleFilterLab = () => {
+    this.setState({
+      members: this.state.members.filter(member => {
+        // 로직
+        return false
+      })
+    });
+  }
 
   render() {
 
     return (
       <React.Fragment>
         <h2>멋쟁이 사자처럼 프론트엔드 스쿨 4기 멤버</h2>
+        <button 
+          type="button" 
+          style={{ marginBottom: 20 }}
+          onClick={this.handleFilterLab}
+        >
+          LAB 10 조 모여!
+        </button>
         <ul>
           {
-            this.state.members.map(({ id, name, price, image }) => 
+            this.state.members.map(({ id, lab, name, gender }) => 
               <li key={id}>
-                {/* 여기에 여러분이 마크업 해주세요. */}
+                <p><b>{lab}</b> <span>{ gender?.includes('여성') ? '🙆🏻‍♀️' : '🙆🏻‍♂️' }</span> {name}</p>
               </li>
             )
           }
