@@ -26,9 +26,11 @@ var Home = /*#__PURE__*/function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {
       members: likeLionMembers
     });
+    _defineProperty(_assertThisInitialized(_this), "initialMembers", likeLionMembers);
+    _defineProperty(_assertThisInitialized(_this), "labCount", _this.calcLabCount());
     _defineProperty(_assertThisInitialized(_this), "handleFilterLab", function (labNumber) {
       _this.setState({
-        members: _this.state.members.filter(function (member) {
+        members: _this.initialMembers.filter(function (member) {
           return member.lab === labNumber;
         })
       });
@@ -36,6 +38,18 @@ var Home = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
   _createClass(Home, [{
+    key: "calcLabCount",
+    value: function calcLabCount() {
+      // 데이터 분석
+      // 내가 무얼을 해야 하나?
+      // - 105개의 데이터를 순회해서 lab의 갯수가 몇 개인지를 확인해야 한다.
+      // 그걸 하려면 어떤 로직을 짜야 하나?
+      // - 배열??? 아니면 다른 데이터를??
+      // 그러면 결과 값은 무엇을 내보내야 하나?
+      // - 랩의 갯수
+      return 11;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this,
@@ -46,15 +60,15 @@ var Home = /*#__PURE__*/function (_React$Component) {
           display: 'flex',
           gap: 8
         }
-      }, /*#__PURE__*/React.createElement("button", {
-        type: "button",
-        style: {
-          marginBottom: 20
-        },
-        onClick: function onClick() {
-          return _this2.handleFilterLab(4);
-        }
-      }, "LAB 4\uC870 \uBAA8\uC5EC!")), /*#__PURE__*/React.createElement("ul", null, (_this$state = this.state) === null || _this$state === void 0 ? void 0 : _this$state.members.map(function (_ref) {
+      }, Array(this.labCount).fill().map(function (_, index /* 0, 1, 2, ..., 10 */) {
+        var labIndex = index + 1; // 1, 2, 3, 4, ..., 11
+        return /*#__PURE__*/React.createElement(LabButton, {
+          key: "lab-button-".concat(index),
+          onFilter: function onFilter() {
+            return _this2.handleFilterLab(labIndex);
+          }
+        }, "LAB ", labIndex);
+      })), /*#__PURE__*/React.createElement("ul", null, (_this$state = this.state) === null || _this$state === void 0 ? void 0 : _this$state.members.map(function (_ref) {
         var id = _ref.id,
           lab = _ref.lab,
           name = _ref.name,
@@ -67,4 +81,13 @@ var Home = /*#__PURE__*/function (_React$Component) {
   }]);
   return Home;
 }(React.Component);
+function LabButton(props) {
+  return /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    style: {
+      marginBottom: 20
+    },
+    onClick: props.onFilter
+  }, props.children);
+}
 export default Home;
