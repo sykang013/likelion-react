@@ -1,7 +1,7 @@
 import './App.css';
-import { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { countState } from './@store/countState';
+import ReactCounter from './ReactCounter/Counter';
+import RecoilCounter from './RecoilCounter/Counter';
+
 //import {useState} from 'react';
 
 // Recoil 상태(아톰->상태)
@@ -14,22 +14,15 @@ import { countState } from './@store/countState';
 
 // 아톰의 타입 확인 
 // console.log(typeof atom);
-function App() {
+
   // useRecoilState를 사용하면 더이상 리액트의 상태관리 도구가 아니라 리코일의 상태관리 도구.
-  const [count, setCount] = useRecoilState(countState);
-  const [reactCount, setReactCount] = useState(0);
-
-  return (
-    <div className="App">
-      <button onClick={() => setCount((count) => count + 1)}>
-        리코일 카운트 = {count}
-      </button>
-
-      <button onClick={() => setReactCount((count) => count + 1)}>
-        리액트 카운트 = {reactCount}
-      </button>
-    </div>
-  );
-}
-
-export default App;
+  function App() {
+    return (
+      <div className="App">
+        <RecoilCounter />
+        <ReactCounter />
+      </div>
+    );
+  }
+  
+  export default App;
