@@ -1,7 +1,13 @@
+import { useEffect } from 'react';
+
 export default function CountButton({ children, ...restProps }) {
-    return (
-      <button type="button" {...restProps}>
-        {children}
-      </button>
-    );
-  }
+  useEffect(() => {
+    console.log('React: Update CountButton');
+  });
+
+  return (
+    <button type="button" {...restProps}>
+      {children}
+    </button>
+  );
+}
