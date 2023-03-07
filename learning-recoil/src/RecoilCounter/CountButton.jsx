@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useSetRecoilState } from 'recoil';
-import { countState } from '../@store/countState';
+import { countState } from '@/@store/countState';
 
 export default function CountButton({ children }) {
   const setCount = useSetRecoilState(countState); // 쓰기(SET)
